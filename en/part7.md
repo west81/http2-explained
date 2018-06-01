@@ -12,7 +12,11 @@ With the adoption of http2, there are reasons to suspect that TCP connections wi
 
 This will affect how HTTP load balancers work and there may arise situations when a site wants to suggest that the client connect to another host. It could be for performance reasons, or if a site is being taken down for maintenance, etc.
 
-The server will send the [Alt-Svc: header](http://tools.ietf.org/html/draft-ietf-httpbis-alt-svc-07) (or ALTSVC frame with http2) telling the client about an alternative service: another route to the same content, using another service, host, and port number.
+The server will send the [Alt-Svc:
+header](https://tools.ietf.org/html/draft-ietf-httpbis-alt-svc-10) (or ALTSVC
+frame with http2) telling the client about an alternative service: another
+route to the same content, using another service, host, and port number.
+
 
 A client should then attempt to connect to that service asynchronously and only use the alternative if the new connection succeeds.
 
@@ -20,7 +24,8 @@ A client should then attempt to connect to that service asynchronously and only 
 
 The Alt-Svc header allows a server that provides content over http:// to inform the client that the same content is also available over a TLS connection.
 
-This is a somewhat debatable feature. Such a connection would do unauthenticated TLS and wouldn't be advertized as “secure” anywhere, wouldn't use any padlock in the UI, and in fact there is no way tell the user that it isn't plain old HTTP, but this is still opportunistic TLS and some people are very firmly against this concept.
+This is a somewhat debatable feature. Such a connection would do unauthenticated TLS and wouldn't be advertised as “secure” anywhere, wouldn't use any padlock in the UI, and in fact there is no way to tell the user that it isn't plain old HTTP, but this is still opportunistic TLS and some people are very firmly against this concept.
+
 
 ## 7.2. Blocked
 
